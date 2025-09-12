@@ -4,87 +4,126 @@ This repo is my personal journey to **master advanced Bash scripting** and **bar
 
 The goal: build safe, idempotent scripts, bootstrap servers automatically, and transition towards **Ansible + declarative workflows**.
 
----
-
-## 📅 Learning Roadmap (4 Weeks)
-
-### Week 1 – Bash Foundations (Safe & Modern)
-
-**Goals:**
-- Write safe Bash (strict mode, logging, traps).
-- Understand variables, arrays, loops, and input handling.
-- Create idempotent scripts with clear logging.
-
-**To-Do:**
-- [ ] Learn strict mode: `set -Eeuo pipefail`, `IFS`
-- [ ] Write a reusable script template with logging + traps
-- [ ] Practice input handling (`getopts`, env vars, config)
-- [ ] Review file/text processing (`sed`, `awk`, `xargs`, `grep`)
-- [ ] Mini-project: **User bootstrap script** (create user, SSH keys, sudo, logging)
-- [ ] Run **ShellCheck** + **shfmt** on scripts
+By the end, you’ll have:  
+- Advanced Bash skills (strict mode, modular scripts, testing)  
+- Reusable automation scripts for server bootstrap  
+- Systemd + IPMI automation for bare-metal  
+- Starter Ansible setup to move beyond Bash  
 
 ---
 
-### Week 2 – Advanced Bash & Testing
+## 📅 Week 1 – Bash Foundations (Safe & Modern)
 
-**Goals:**
-- Build modular Bash “libraries.”
-- Manage background jobs and parallel tasks.
-- Write unit tests for Bash scripts.
+**Goal:** Build safe, reusable Bash scripts with strict mode, error handling, and logging.
 
-**To-Do:**
-- [ ] Deep dive into parameter expansion & regex
-- [ ] Practice loops + parallel execution (`xargs -P`, GNU parallel)
-- [ ] Create modular bash libraries (`roles/users.sh`, `roles/services.sh`)
-- [ ] Add error handling with `trap` and cleanup
-- [ ] Learn **bats-core** for testing Bash
-- [ ] Mini-project: **Service setup script** (e.g., install + configure nginx/postgres)
-- [ ] Add bats tests for service setup
+- **Day 1**  
+  - [ ] Learn and enable strict mode (`set -Eeuo pipefail`, `IFS`)  
+  - [ ] Create a script template with logging + traps  
 
----
+- **Day 2**  
+  - [ ] Practice functions, variables, arrays  
+  - [ ] Handle input with `getopts` and env vars  
 
-### Week 3 – Bare-Metal Automation
+- **Day 3**  
+  - [ ] Implement error handling (`trap`, exit codes)  
+  - [ ] Add cleanup function + logging to your template  
 
-**Goals:**
-- Automate server lifecycle (PXE boot, installs, OOB).
-- Manage services via systemd.
-- Drive automation from inventory (YAML/CSV).
+- **Day 4**  
+  - [ ] Practice file/text processing: `sed`, `awk`, `grep`, `cut`, `xargs`  
+  - [ ] Learn safe file handling (`mktemp`, `install`, checksums)  
 
-**To-Do:**
-- [ ] Study PXE/iPXE basics, Kickstart/Preseed/Autoinstall
-- [ ] Write systemd unit files + hardening options
-- [ ] Automate OOB management with `ipmitool` (power/reset)
-- [ ] Practice using `yq`/`jq` for inventory-driven config
-- [ ] Mini-project: **Server bootstrap script**  
-  - Reads from inventory  
-  - Configures hostname, users, SSH, packages  
-  - Deploys a systemd service  
+- **Day 5 (Mini-Project)**  
+  - [ ] Script to bootstrap a server user (add user, SSH key, sudo, umask)  
+  - [ ] Run **ShellCheck** + **shfmt** on the script  
 
 ---
 
+## 📅 Week 2 – Advanced Bash & Testing
 
-### Week 4 – Beyond Bash (Better Practices)
+**Goal:** Write modular scripts and test them.
 
-**Goals:**
-- Learn when to use Bash vs Ansible.
-- Transition scripts into Ansible roles.
-- Securely manage secrets + monitoring.
+- **Day 6**  
+  - [ ] Learn advanced parameter expansion + regex  
+  - [ ] Use `[[ ]]` vs `[ ]`  
 
-**To-Do:**
-- [ ] Intro to Ansible: inventory, playbooks, tasks
-- [ ] Run Bash scripts via Ansible tasks
-- [ ] Build Ansible roles from scripts (users, services)
-- [ ] Learn secrets management (Ansible Vault, sops/age)
-- [ ] Automate monitoring setup (Prometheus node_exporter, journald logging)
-- [ ] Capstone project: **Server build pipeline**  
-  - PXE boot → Bash bootstrap → Ansible config → Systemd services  
-  - Document workflow in repo  
+- **Day 7**  
+  - [ ] Practice loops (`for`, `while`)  
+  - [ ] Try parallelism (`xargs -P`, GNU parallel)  
+
+- **Day 8**  
+  - [ ] Build modular Bash libraries (e.g., `roles/users.sh`)  
+  - [ ] Learn sourcing and reusing functions  
+
+- **Day 9**  
+  - [ ] Install **bats-core**  
+  - [ ] Write first unit test for a script  
+
+- **Day 10 (Mini-Project)**  
+  - [ ] Write a service setup script (e.g., install + configure nginx/postgres)  
+  - [ ] Add bats tests to validate behavior  
 
 ---
 
-## 🛠 Tools to Install
+## 📅 Week 3 – Bare-Metal Automation
 
-- **Bash helpers:** `ShellCheck`, `shfmt`, `bats-core`
-- **Inventory tools:** `yq`, `jq`
-- **Infra tools:** `ipmitool`, `systemd`
-- **Config management:** `ansible`, `sops` (optional)
+**Goal:** Automate full server lifecycle, services, and inventory-driven configs.
+
+- **Day 11**  
+  - [ ] Study PXE/iPXE basics  
+  - [ ] Learn Kickstart/Preseed/Autoinstall workflow  
+
+- **Day 12**  
+  - [ ] Write a systemd unit file  
+  - [ ] Add hardening options (e.g., `ProtectSystem`, `PrivateTmp`)  
+
+- **Day 13**  
+  - [ ] Learn IPMI/Redfish basics  
+  - [ ] Script power/reset with `ipmitool`  
+
+- **Day 14**  
+  - [ ] Learn YAML/CSV parsing with `yq` + `jq`  
+  - [ ] Drive automation from inventory  
+
+- **Day 15 (Mini-Project)**  
+  - [ ] Write a “new server bootstrap” script that:  
+    - Reads inventory  
+    - Configures hostname, users, sshd  
+    - Installs base packages  
+    - Deploys a systemd service  
+
+---
+
+## 📅 Week 4 – Beyond Bash (Better Practices)
+
+**Goal:** Learn Ansible + modern practices (secrets, monitoring, pipelines).
+
+- **Day 16**  
+  - [ ] Install Ansible  
+  - [ ] Write first playbook (inventory + tasks)  
+
+- **Day 17**  
+  - [ ] Run a Bash script via Ansible task  
+  - [ ] Convert a script into an Ansible role  
+
+- **Day 18**  
+  - [ ] Learn secrets management (Ansible Vault, sops/age)  
+  - [ ] Store and load secrets securely  
+
+- **Day 19**  
+  - [ ] Automate monitoring setup (Prometheus node_exporter, journald log shipping)  
+  - [ ] Add automated health checks  
+
+- **Day 20 (Capstone Project)**  
+  - [ ] Build a full **server pipeline**:  
+    - PXE boot → Bash bootstrap → Ansible config → Systemd services  
+  - [ ] Document workflow in repo README  
+
+---
+
+
+By the end of this plan, you’ll:  
+- Be fluent in **advanced Bash scripting** (safe, idempotent, tested).  
+- Have working **server bootstrap scripts** for bare-metal.  
+- Know how to use **systemd + OOB automation**.  
+- Have a starter **Ansible setup** built from your Bash scripts.  
+- Own a reproducible **server build pipeline**.  
